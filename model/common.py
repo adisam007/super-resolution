@@ -1,13 +1,13 @@
 import numpy as np
 import tensorflow as tf
 
-from keras.layers import Lambda
+from tensorflow.python.keras.layers import Lambda
 
 DIV2K_RGB_MEAN = np.array([0.4488, 0.4371, 0.4040]) * 255
 
 
 def SubpixelConv2D(scale, **kwargs):
-    return Lambda(lambda x: tf.depth_to_space(x, scale), **kwargs)
+    return Lambda(lambda x: tf.nn.depth_to_space(x, scale), **kwargs)
 
 
 def Normalization(rgb_mean=DIV2K_RGB_MEAN, **kwargs):
@@ -19,12 +19,15 @@ def Denormalization(rgb_mean=DIV2K_RGB_MEAN, **kwargs):
 
 
 def Normalization_01(**kwargs):
+    '''Creates a layer that normalizes RGB images to [0, 1].'''
     return Lambda(lambda x: x / 255.0, **kwargs)
 
 
 def Normalization_m11(**kwargs):
+    '''Creates a layer that normalizes RGB images to [-1, 1].'''
     return Lambda(lambda x: x / 127.5 - 1, **kwargs)
 
 
 def Denormalization_m11(**kwargs):
+    '''Creates a layer that inverts Normalization_m11.'''
     return Lambda(lambda x: (x + 1) * 127.5, **kwargs)

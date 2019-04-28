@@ -1,7 +1,7 @@
-from keras.layers import Add, Conv2D, Input, Lambda, Activation
-from keras.models import Model
+from tensorflow.python.keras.layers import Add, Conv2D, Input, Lambda, Activation
+from tensorflow.python.keras.models import Model
 
-from .common import SubpixelConv2D, Normalization, Denormalization, Denormalization_m11
+from .common import *
 
 
 def edsr_generator(scale=4, num_filters=64, num_res_blocks=16):
@@ -34,8 +34,7 @@ def edsr(scale, num_filters=64, num_res_blocks=8, res_block_scaling=None, tanh_a
 
 
 def res_block(x_in, filters, scaling):
-    x = Conv2D(filters, 3, padding='same')(x_in)
-    x = Activation('relu')(x)
+    x = Conv2D(filters, 3, padding='same', activation='relu')(x_in)
     x = Conv2D(filters, 3, padding='same')(x)
     x = Add()([x_in, x])
     if scaling:

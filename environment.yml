@@ -1,0 +1,10 @@
+name: sr-tf2
+dependencies:
+- python=3.6
+- pip
+- pytest
+- tqdm
+- Pillow
+- pip:
+  - tensorflow-gpu==2.0.0-alpha0
+  - tensorflow-addons==0.3.1
