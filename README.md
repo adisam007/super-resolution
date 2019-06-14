@@ -16,4 +16,4 @@ A [Tensorflow 2.0](https://www.tensorflow.org/beta) based implementation of
 - [example-srgan.ipynb](example-srgan.ipynb) 
 
 DIV2K training and validation images are automatically downloaded to `.div2k` directory and converted to binary format
-for faster loading.
+for faster loading. Pre-trained SRGAN models are available (see [example-srgan.ipynb](example-srgan.ipynb) for details).
