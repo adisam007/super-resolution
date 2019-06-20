@@ -6,5 +6,5 @@ dependencies:
 - tqdm
 - Pillow
 - pip:
-  - tensorflow-gpu==2.0.0-alpha0
-  - tensorflow-addons==0.3.1
+  - tensorflow-gpu==2.0.0-beta1
+  - tensorflow-addons==0.4.0
