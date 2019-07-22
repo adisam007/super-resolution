@@ -36,9 +36,9 @@ def edsr(scale, num_filters=64, num_res_blocks=8, res_block_scaling=None, tanh_a
 def res_block(x_in, filters, scaling):
     x = Conv2D(filters, 3, padding='same', activation='relu')(x_in)
     x = Conv2D(filters, 3, padding='same')(x)
-    x = Add()([x_in, x])
     if scaling:
         x = Lambda(lambda t: t * scaling)(x)
+    x = Add()([x_in, x])
     return x
 
 

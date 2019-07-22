@@ -38,9 +38,9 @@ def wdsr(scale, num_filters, num_res_blocks, res_block_expansion, res_block_scal
 def res_block_a(x_in, num_filters, expansion, kernel_size, scaling):
     x = conv2d_weightnorm(num_filters * expansion, kernel_size, padding='same', activation='relu')(x_in)
     x = conv2d_weightnorm(num_filters, kernel_size, padding='same')(x)
-    x = Add()([x_in, x])
     if scaling:
         x = Lambda(lambda t: t * scaling)(x)
+    x = Add()([x_in, x])
     return x
 
 
@@ -49,9 +49,9 @@ def res_block_b(x_in, num_filters, expansion, kernel_size, scaling):
     x = conv2d_weightnorm(num_filters * expansion, 1, padding='same', activation='relu')(x_in)
     x = conv2d_weightnorm(int(num_filters * linear), 1, padding='same')(x)
     x = conv2d_weightnorm(num_filters, kernel_size, padding='same')(x)
-    x = Add()([x_in, x])
     if scaling:
         x = Lambda(lambda t: t * scaling)(x)
+    x = Add()([x_in, x])
     return x
 
 
